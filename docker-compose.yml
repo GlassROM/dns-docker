@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  unbound:
+    runtime: runsc
+    image: bc31cba52d9256b8fb64ba62e15ab1f07580d45543f5c65c6f67eafd5e6eb21d
+    read_only: true
+    container_name: unbound
+    user: "970:970"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    tmpfs:
+      - /tmp
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+    restart: always
+    pull_policy: never
+    networks:
+      aakdns_net:
+        ipv4_address: 172.18.0.2
+
+networks:
+  aakdns_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/16
+          gateway: 172.18.0.1
