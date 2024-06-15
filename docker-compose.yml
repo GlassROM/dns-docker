@@ -17,6 +17,7 @@ services:
       - "53:53/tcp"
       - "53:53/udp"
     restart: always
+    pull_policy: always
     networks:
       aakdns_net:
         ipv4_address: 172.18.0.2
