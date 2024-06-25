@@ -17,7 +17,7 @@ RUN makepkg -sf --noconfirm --skippgpcheck
 
 RUN rm *debug* && mv *.tar.zst unbound.tar.zst
 
-FROM ghcr.io/glassrom/os-image-docker:latest
+FROM ghcr.io/glassrom/os-image-updater:master
 
 RUN pacman-key --init && pacman-key --populate archlinux
 
