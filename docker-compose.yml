@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   unbound:
-    runtime: runsc-overlay
+    runtime: runsc-overlay-host-network
     image: ghcr.io/glassrom/dns-docker:master
     read_only: true
     container_name: unbound
