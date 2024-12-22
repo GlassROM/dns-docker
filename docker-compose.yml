@@ -16,7 +16,7 @@ services:
       - CAP_SYS_RESOURCE
       - CAP_NET_RAW
     tmpfs:
-      - /tmp
+      - /tmp:nosuid,nodev,noexec
     ports:
       - "53:53/tcp"
       - "53:53/udp"
