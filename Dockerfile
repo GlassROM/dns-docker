@@ -1,5 +1,7 @@
 FROM ghcr.io/glassrom/os-image-updater:master
 
+RUN mv /etc/ld.so.preload /etc/ld.so.preload.bak
+
 RUN pacman-key --init && pacman-key --populate archlinux
 
 RUN set -x \
@@ -16,6 +18,8 @@ COPY unbound.conf /etc/unbound/unbound.conf
 RUN chown -R unbound:unbound /etc/unbound
 
 RUN rm -rf /etc/pacman.d/gnupg
+
+RUN mv /etc/ld.so.preload.bak /etc/ld.so.preload
 
 EXPOSE 53/tcp 53/udp
 
